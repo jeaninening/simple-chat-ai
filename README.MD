@@ -30,14 +30,36 @@ Node.js >= 22.0.0
 Python >= 3.12
 智谱 AI API Key
 
+#启动前端服务：
+windows:
+先执行：pnpm add @rolldown/binding-win32-x64-msvc
+再执行：pnpm install
+
+mac:
+pnpm install
+pnpm dev
+
 # 启动后端服务：
-激活虚拟环境 D:\anaconda\Scripts\activate.bat && conda activate simple_env
+下载anaconda 
+https://www.anaconda.com/docs/getting-started/main 命令也可以
+
+安装：bash Miniconda3-latest-Linux-x86_64.sh
+创建虚拟环境
+conda create --name myenv python=3.12
+激活
+conda activate myenv
 
 # 安装依赖
 pip install -r requirements.txt
 
+#弹射出项目的所有依赖包以及版本号
+pip freeze > requirements.txt
+
 # 启动服务
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+
+
 
 流式输出：前端使用 EventSource 接收后端 SSE 流式数据，实现打字机效果
 多轮对话：后端维护对话上下文列表，每次请求携带历史消息给大模型
