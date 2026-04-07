@@ -18,8 +18,7 @@
 <script setup>
 import { ref } from 'vue'
 import UploadFilled from "../assets/icons/upload.svg"
-import axios from 'axios'
-
+import request from '@/utils/request'
 const emit = defineEmits(['upload-status'])
 const file_id = ref(null)
 
@@ -34,8 +33,8 @@ const customUpload = async (options) => {
     // 上传中
     emit('upload-status', { status: 0, message: '文档上传中...' })
 
-    const res = await axios({
-      url: 'http://127.0.0.1:8000/v1/upload',
+    const res = await request({
+      url: '/v1/upload',
       method: 'POST',
       data: formData,
       onUploadProgress: (progressEvent) => {
@@ -67,7 +66,7 @@ const customUpload = async (options) => {
 }
 // 删除文件
 const deleteFile = async () => {
-  await axios("http://127.0.0.1:8000/v1/delete-file", {
+  await request("/v1/delete-file", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     data: { file_id: file_id.value }
