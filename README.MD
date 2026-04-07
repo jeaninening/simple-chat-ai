@@ -30,7 +30,7 @@ Node.js >= 22.0.0
 Python >= 3.12  
 智谱 AI API Key  
 
-#启动前端服务：  
+#本地启动前端服务：  
 windows:
 先执行：pnpm add @rolldown/binding-win32-x64-msvc
 再执行：pnpm install  
@@ -39,7 +39,7 @@ mac:
 pnpm install
 pnpm dev
 
-# 启动后端服务：
+# 本地启动后端服务：
 下载anaconda 
 https://www.anaconda.com/docs/getting-started/main 命令也可以  
 
@@ -54,6 +54,41 @@ pip install -r requirements.txt
 
 #弹射出项目的所有依赖包以及版本号
 pip freeze > requirements.txt  
+
+# 启动服务
+uvicorn main:app --reload --host 0.0.0.0 --port 8000    
+
+
+
+# 启动服务器后端服务（ubuntu服务器）：
+下载anaconda 
+https://www.anaconda.com/docs/getting-started/main 命令也可以  
+
+安装：bash Miniconda3-latest-Linux-x86_64.sh  
+创建虚拟环境
+conda create --name myenv python=3.12  
+激活
+conda activate myenv  
+
+# 安装依赖
+pip install -r requirements.txt  
+
+设置系统环境的apikey、大模型的地址  
+# 在finalsell执行命令  
+nano ~/.bashrc  
+
+# 在文件末尾添加  
+export API_KEY="你的AI_API密钥"  
+export BASE_URL="你的AI地址"  
+1.按键crtl+o  
+2.Enter确认
+
+# 保存后重新加载  
+source ~/.bashrc  
+会退出当前虚拟环境  
+
+需要重新激活conda activate myenv  
+
 
 # 启动服务
 uvicorn main:app --reload --host 0.0.0.0 --port 8000    
