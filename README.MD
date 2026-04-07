@@ -24,16 +24,16 @@ simple-chat-ai/
 └── README.md
 ```
 
-# 快速开始
-环境要求
-Node.js >= 22.0.0
-Python >= 3.12
-智谱 AI API Key
+# 快速开始  
+环境要求  
+Node.js >= 22.0.0  
+Python >= 3.12  
+智谱 AI API Key  
 
-#启动前端服务：
+#启动前端服务：  
 windows:
 先执行：pnpm add @rolldown/binding-win32-x64-msvc
-再执行：pnpm install
+再执行：pnpm install  
 
 mac:
 pnpm install
@@ -56,10 +56,10 @@ pip install -r requirements.txt
 pip freeze > requirements.txt  
 
 # 启动服务
-uvicorn main:app --reload --host 0.0.0.0 --port 8000  
+uvicorn main:app --reload --host 0.0.0.0 --port 8000    
 
 流式输出：前端使用 EventSource 接收后端 SSE 流式数据，实现打字机效果
 多轮对话：后端维护对话上下文列表，每次请求携带历史消息给大模型
-Prompt 自定义：前端传递自定义系统提示词，动态修改 AI 角色
+Prompt 自定义：前端传递自定义系统提示词，动态修改 AI 角色  
 
 基于 H5 标准，支持 PC 浏览器、移动端访问
