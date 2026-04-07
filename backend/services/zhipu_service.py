@@ -3,7 +3,7 @@ import httpx
 from typing import AsyncGenerator, Optional
 from dotenv import load_dotenv
 import json
-
+from typing import List
 from models.schemas import ChatRequest, Message
 
 load_dotenv()
@@ -76,23 +76,52 @@ class ZhipuService:
     #         model=model
     #     )
     #     return await self.chat(request)
-    async def embed_texts(self, texts: list[str]) -> list:
+    async def embed_texts(self, texts: List[str]) -> List[List[float]]:
+        """异步 embedding 实现"""
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {self.api_key}",
         }
-        payload = {
-            "model": "embedding-2",
-            "input": texts
-        }
-        async with httpx.AsyncClient(timeout=30) as client:
-            response = await client.post(
-            "https://open.bigmodel.cn/api/paas/v4/embeddings",
-            headers=headers,
-            json=payload
-        )
-        data = response.json()
-        return [item["embedding"] for item in data["data"]]
+        
+        # 智谱 API 可能限制批量大小，建议分批
+        batch_size = 16  # 根据 API 限制调整
+        all_embeddings = []
+        
+        for i in range(0, len(texts), batch_size):
+            batch = texts[i:i+batch_size]
+            payload = {
+                "model": "embedding-2",
+                "input": batch
+            }
+            
+            try:
+                async with httpx.AsyncClient(timeout=60) as client:
+                    response = await client.post(
+                        "https://open.bigmodel.cn/api/paas/v4/embeddings",
+                        headers=headers,
+                        json=payload
+                    )
+                    
+                    if response.status_code != 200:
+                        print(f"API 错误: {response.status_code} - {response.text}")
+                        raise Exception(f"API 调用失败: {response.text}")
+                    
+                    data = response.json()
+                    
+                    # 检查返回格式
+                    if "data" not in data:
+                        print(f"返回数据格式错误: {data}")
+                        raise Exception("API 返回格式错误")
+                    
+                    # 按输入顺序提取 embedding
+                    batch_embeddings = [item["embedding"] for item in data["data"]]
+                    all_embeddings.extend(batch_embeddings)
+                    
+            except Exception as e:
+                print(f"Embedding 调用失败: {e}")
+                raise
+        
+        return all_embeddings
     
 # 创建全局服务实例（单例模式）
 zhipu_service = ZhipuService()

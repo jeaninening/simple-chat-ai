@@ -3,6 +3,7 @@
 
 .messages {
   padding: 20px;
+  margin-bottom: 140px;
 }
 
 .message {
@@ -12,10 +13,8 @@
 
 .message .content {
   margin-bottom: 15px;
-  display: flex;
   animation: fadeIn 0.3s ease;
   background: #f9fafb;
-
 }
 
 .avatar {
@@ -57,6 +56,7 @@
 }
 
 .input-area-wrapper {
+  background: #fff;
   border-top: 1px solid #e0e0e0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, .02), 0 2px 4px rgba(0, 0, 0, .04);
   position: fixed;
@@ -148,4 +148,27 @@ p {
     left: 50%;
     transform: translateX(-50%);
   }
+}
+
+
+/* Markdown 样式 */
+.content :deep(p) {
+  margin: 0 0 8px 0;
+}
+
+.content :deep(p:last-child) {
+  margin-bottom: 0;
+}
+
+.content :deep(pre) {
+  background: #f6f8fa;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.content :deep(code) {
+  font-family: monospace;
+  font-size: 0.9em;
 }
