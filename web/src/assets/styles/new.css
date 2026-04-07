@@ -1,0 +1,151 @@
+.chat-container {}
+
+
+.messages {
+  padding: 20px;
+}
+
+.message {
+  display: flex;
+
+}
+
+.message .content {
+  margin-bottom: 15px;
+  display: flex;
+  animation: fadeIn 0.3s ease;
+  background: #f9fafb;
+
+}
+
+.avatar {
+  border-radius: 50%;
+  margin-right: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.content {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 18px;
+  background: #007aff;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.input-area-wrapper {
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .02), 0 2px 4px rgba(0, 0, 0, .04);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  .input-area {
+    padding: 20px 20px 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .input-content .el-input__wrapper {
+    border-radius: 20px;
+  }
+}
+
+.message.assistant {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.user .content {
+  background: #007aff;
+  color: white;
+}
+
+p {
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1024px) {
+  .messages {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    width: 100%;
+  }
+
+  .message {
+    margin-bottom: 28px;
+  }
+
+  .message.user .content {
+    background: #e8e8ed;
+    color: #1d1d1f;
+    border-radius: 20px;
+    max-width: 50%;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 14px;
+  }
+
+  /* Web端输入区域 - 居中且更宽 */
+  .input-area {
+    max-width: 600px;
+    padding: 20px 24px 32px;
+    background: #ffffff;
+    gap: 12px;
+    border-radius: 20px;
+  }
+
+  .input-area-wrapper {
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    width: 600px;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,381 @@
+
+/* ========== 移动端默认样式 ========== */
+.chat-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.message {
+  margin-bottom: 15px;
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.user .content {
+  background: #007aff;
+  color: white;
+}
+
+.message.assistant {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.message.assistant .content {
+  width: auto;
+  max-width: 376px;
+  background: white;
+  color: #333;
+  border: 1px solid #e0e0e0;
+}
+
+.avatar {
+  border-radius: 50%;
+  margin-right: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.content {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+/* Markdown 样式 */
+.content :deep(p) {
+  margin: 0 0 8px 0;
+}
+
+.content :deep(p:last-child) {
+  margin-bottom: 0;
+}
+
+.content :deep(pre) {
+  background: #f6f8fa;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.content :deep(code) {
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 18px;
+  background: #007aff;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.input-area {
+  display: flex;
+  padding: 20px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .02), 0 2px 4px rgba(0, 0, 0, .04);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  gap: 10px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .input-area {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 24px 32px;
+    background: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    gap: 12px;
+    left: 50%;
+    /* 使左侧边缘在父元素的50%处 */
+    transform: translateX(-50%);
+    bottom: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .input-area {
+    padding: 12px 16px;
+    width: 100%;
+    bottom: 24px;
+  }
+}
+
+
+.input-area input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-area input:focus {
+  border-color: #007aff;
+}
+
+.input-area button {
+  padding: 12px 24px;
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.input-area button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== Web端简约风格（宽度 > 1024px） ========== */
+@media (min-width: 1024px) {
+
+  /* Web端全宽布局，无宽度限制 */
+  .chat-container {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    background: #ffffff;
+  }
+
+  /* 消息区域 - 居中内容，最大宽度限制阅读舒适度 */
+  .messages {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    width: 100%;
+  }
+
+  /* 消息间距优化 */
+  .message {
+    margin-bottom: 28px;
+  }
+
+  /* Web端用户消息样式 - 简约灰色 */
+  .message.user .content {
+    background: #e8e8ed;
+    color: #1d1d1f;
+    border-radius: 20px;
+    max-width: 50%;
+  }
+
+  /* Web端助手消息样式 - 无边框，左对齐 */
+  .message.assistant {
+    max-width: 900px;
+    margin: 0 auto 28px auto;
+  }
+
+  .message.assistant .content {
+    max-width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0 12px 0 0;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Web端头像样式 */
+  .avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 14px;
+  }
+
+  /* Web端输入区域 - 居中且更宽 */
+  .input-area {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 24px 32px;
+    background: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    gap: 12px;
+  }
+
+  .input-area input {
+    padding: 14px 18px;
+    border: 1.5px solid #e8e8ed;
+    border-radius: 30px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background: #fafafc;
+  }
+
+  .input-area input:focus {
+    border-color: #007aff;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+  }
+
+  .input-area button {
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    background: #007aff;
+    transition: all 0.2s ease;
+  }
+
+  .input-area button:hover:not(:disabled) {
+    background: #005fc1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+  }
+
+  .input-area button:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  /* 更优雅的打字光标 - 替代原来的竖线 */
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: #007aff;
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: pulse 1s infinite;
+    border-radius: 1px;
+  }
+
+  /* 平滑呼吸动画，替代生硬的闪烁 */
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    50% {
+      opacity: 0.3;
+      transform: scaleY(0.8);
+    }
+  }
+
+  /* Web端专属光标样式 */
+  @media (min-width: 1024px) {
+    .typing-cursor {
+      background: #86868b;
+      width: 2px;
+      animation: fadePulse 1.2s infinite;
+    }
+
+    @keyframes fadePulse {
+
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+    }
+  }
+
+  /* Web端代码块样式优化 */
+  .content :deep(pre) {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  /* Web端消息气泡内的链接样式 */
+  .content :deep(a) {
+    color: #007aff;
+    text-decoration: none;
+  }
+
+  .content :deep(a:hover) {
+    text-decoration: underline;
+  }
+}
+
+/* ========== 平板端适配（768px - 1024px） ========== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chat-container {
+    max-width: 90%;
+  }
+
+  .message.user .content {
+    max-width: 60%;
+  }
+
+  .message.assistant .content {
+    max-width: 75%;
+  }
+}
+
+/* ========== 移动端优化（< 768px） ========== */
+@media (max-width: 767px) {
+  .message.assistant .content {
+    max-width: 85%;
+  }
+
+  .content {
+    max-width: 85%;
+  }
+
+  .input-area {
+    padding: 12px 16px;
+  }
+
+  .input-area button {
+    padding: 10px 18px;
+  }
+}
