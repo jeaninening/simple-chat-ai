@@ -41,25 +41,22 @@ pnpm dev
 
 # 启动后端服务：
 下载anaconda 
-https://www.anaconda.com/docs/getting-started/main 命令也可以
+https://www.anaconda.com/docs/getting-started/main 命令也可以  
 
-安装：bash Miniconda3-latest-Linux-x86_64.sh
+安装：bash Miniconda3-latest-Linux-x86_64.sh  
 创建虚拟环境
-conda create --name myenv python=3.12
+conda create --name myenv python=3.12  
 激活
-conda activate myenv
+conda activate myenv  
 
 # 安装依赖
-pip install -r requirements.txt
+pip install -r requirements.txt  
 
 #弹射出项目的所有依赖包以及版本号
-pip freeze > requirements.txt
+pip freeze > requirements.txt  
 
 # 启动服务
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-
-
-
+uvicorn main:app --reload --host 0.0.0.0 --port 8000  
 
 流式输出：前端使用 EventSource 接收后端 SSE 流式数据，实现打字机效果
 多轮对话：后端维护对话上下文列表，每次请求携带历史消息给大模型
