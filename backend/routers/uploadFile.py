@@ -27,7 +27,6 @@ FAISS_DIR = "./faiss_db"
 class ZhipuEmbeddings:
     def __init__(self, zhipu_service):
         self.zhipu_service = zhipu_service
-        print("ZhipuEmbeddings init")
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         """

@@ -110,7 +110,7 @@ p {
   .messages {
     max-width: 900px;
     margin: 0 auto;
-    padding: 40px 24px;
+    padding: 40px 24px 128px;
     width: 100%;
   }
 
